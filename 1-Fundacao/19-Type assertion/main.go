@@ -44,4 +44,20 @@ func main() {
 
 	println("--------------------------------")
 
+	println("Um tratamento para interfaces vazias é utilizando o type assertion")
+	//Reference: https://www.codingexplorations.com/blog/understanding-and-using-the-empty-interface-in-go
+
+	var empty_interface interface{} = "Golang"
+
+	switch v := empty_interface.(type) {
+	case int:
+		fmt.Printf("O tipo encontrado foi Integer: %d\n", v)
+	case string:
+		fmt.Printf("O tipo encontrado foi String: %s\n", v)
+	default:
+		fmt.Printf("Unknown Type\n")
+	}
+
+	println("--------------------------------")
+
 }
