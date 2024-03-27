@@ -15,7 +15,7 @@ func main() {
 	}
 
 	// tamanho, err := file.WriteString("Hello, mulecada\n") // escrevendo direto strings
-	tamanho, err := file.Write([]byte("Hello galerinha bonita! Tudo belezinha?\n")) // escrevendo direto bytes
+	tamanho, err := file.Write([]byte("Hello galerinha bonita! Tudo belezinha?")) // escrevendo direto bytes
 
 	if err == nil {
 		fmt.Printf("O tamanho do arquivo gerado é: %d bytes.\n", tamanho)
@@ -53,10 +53,11 @@ func main() {
 	for { // loop infinito que só é encerrado com break
 		n, err := reader.Read(buffer) // registra no slice de 10 em  10 bytes a cada iteracao retornando o n-esimo byte lido ate aquele momento
 		// n sera 10 se conseguir ler até 10 bytes no reader, se houver menos bytes restantes teremos retornando o numero de quanto ele conseguiu fazer a leitura
-		if err != nil {
+		if err != nil { // Só apresenta erro quando chefa no End Of File
+			fmt.Printf("O valor do error é: %v\n", err)
 			break
 		}
-		fmt.Printf("%v\n", string(buffer[:n])) // imprimir até o n-esimo byte no slice
+		fmt.Printf("%v tamanho em bytes: %v\n", string(buffer[:n]), n) // imprimir até o n-esimo byte no slice
 	}
 
 	// Remover arquivos
