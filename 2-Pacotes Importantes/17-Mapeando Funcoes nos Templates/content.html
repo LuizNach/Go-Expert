@@ -1,0 +1,26 @@
+<h1>Cursos</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Horas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{/*"This is a comment?"*/}}
+        {{ range . }}
+            {{ if ge .CargaHoraria 300 }}
+            <tr>
+                <td>{{.Nome | ToUpper }}</td>
+                <td>{{.CargaHoraria}}</td>
+            </tr>
+            {{ else if lt .CargaHoraria 300}}
+            <tr>
+                <td>{{.Nome | cenorinha }}</td>
+                <td>{{.CargaHoraria}}</td>
+            </tr>
+            {{ end }}
+        {{ end }}
+    </tbody>
+</table>
