@@ -15,6 +15,11 @@ No caso da configuração do docker compose será:
 ```
 mysql -u root -p password goexpert
 ```
+Para criar a tabela products no banco goexpert:
+```
+create table products (id varchar(255), name varchar(80), price decimal(10,2), primary key (id));
+```
+
 Uma vez dentro do mysql podemos requisitar uma query SQL para listar todos os produtos cadastrados para que saibamos o que o programa está funcionando:
 ```
 select * from products;
