@@ -26,22 +26,17 @@ O endpoint necessário gerado pelo server.go para este desafio será: /cotacao e
 Ao finalizar, envie o link do repositório para correção.
 
 # Como executar?
-Para facilitar sem necessidade de alterações no código utilizaremos [docker-compose](https://docs.docker.com/compose/)
+Para executar a funcionalidade, faremos em dois terminais a execução do servidor e do cliente.
+No primeiro terminal executamos o servidor executando:
 
 ```bash
 cd Server
-docker compose up -d
+go run server.go
+```
+Em um segundo terminal executamos o cliente executando:
+```bash
 cd ../Client
 go run client.go
 ```
 Validação no caso de execução sem problemas teremos o arquivo `cotacao.txt` na pasta Client.
-Também é possível verificar o banco de dados MySql no docker container mysql executando os seguintes comandos em um novo terminal:
-```bash
-docker container ls # Para visualizar que os containers servidor e mysql estão rodando
-docker container exec -it bash mysql # Fazer o attach em um processo iterativo bash no container nomeado mysql
-mysql -u root -ppassword desafio-api-client-server # Acessar o banco desafio-api-client-server com o mysql
-show tables; # Dentro do sgbd podemos listas todas as tabelas para verificarmos que a tabela cotação foi criada corretamente
-select * from cotacoes; # Para visualizar todos os dados criados na tabela cotacoes
-exit # Para sair do mysql
-exit # Para sair do container mysql 
-```
+Para validar os dados no banco de dados podemos utilizar uma database tool compatível com [sqlite3](https://www.sqlite.org/), como [Dbeaver](https://dbeaver.io/). Uma vez com a database tool isntalada é possível conectar ao arquivo `Server/database.db` para verificar seus dados e perceber que a mesma informação gerada no arquivo `cotacao.txt` também estará registrada no `database.db` com o timestamp da consulta na API externa. 
