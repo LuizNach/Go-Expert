@@ -140,11 +140,7 @@ func persistData(cotacao CotacaoUSDBRL) error {
 	}
 	defer statement.Close()
 
-	local, err := time.LoadLocation("America/Sao_Paulo")
-	if err != nil {
-		return err
-	}
-	_, err = statement.ExecContext(ctx, cotacao.Usdbrl.Bid, time.Now().In(local))
+	_, err = statement.ExecContext(ctx, cotacao.Usdbrl.Bid, time.Now())
 	if err != nil {
 		return err
 	}
