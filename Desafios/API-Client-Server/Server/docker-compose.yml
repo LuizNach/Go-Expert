@@ -1,23 +1,23 @@
 version: '3.8'
 
 services:
-  mysql:
-    image: mysql:5.7
-    container_name: mysql
-    restart: always
-    platform: linux/amd64
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: desafio-api-client-server
-      MYSQL_PASSWORD: password
-    ports:
-      - 3306:3306
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-ppassword"]
-      timeout: 5s
-      retries: 10
-    networks:
-      - mynet
+  # mysql:
+  #   image: mysql:5.7
+  #   container_name: mysql
+  #   restart: always
+  #   platform: linux/amd64
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: desafio-api-client-server
+  #     MYSQL_PASSWORD: password
+  #   ports:
+  #     - 3306:3306
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-ppassword"]
+  #     timeout: 5s
+  #     retries: 10
+  #   networks:
+  #     - mynet
 
   server:
     container_name: servidor
@@ -26,9 +26,9 @@ services:
       dockerfile: ./Dockerfile.yml
     ports:
       - 8080:8080
-    depends_on:
-      mysql:
-        condition: service_healthy
+    # depends_on:
+    #   mysql:
+    #     condition: service_healthy
     networks:
       - mynet
 

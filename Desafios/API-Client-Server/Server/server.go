@@ -10,7 +10,11 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/mattn/go-sqlite3"
+)
+
+const (
+	local_db_file string = "database.db"
 )
 
 type CotacaoUSDBRL struct {
@@ -106,15 +110,14 @@ func getCotacaoDollar() (*CotacaoUSDBRL, error) {
 }
 
 func initializeDataBase() {
-	const dsn = "root:password@tcp(mysql:3306)/desafio-api-client-server"
 
-	db_ptr, err := sql.Open("mysql", dsn)
+	db_ptr, err := sql.Open("sqlite3", local_db_file)
 	if err != nil {
 		log.Fatalf("Error while opening the database: %v", err)
 	}
 	defer db_ptr.Close()
 
-	_, err = db_ptr.Exec(`CREATE TABLE IF NOT EXISTS cotacoes (id INTEGER PRIMARY KEY AUTO_INCREMENT, bid FLOAT, timestamp DATETIME)`)
+	_, err = db_ptr.Exec(`CREATE TABLE IF NOT EXISTS cotacoes (id INTEGER PRIMARY KEY AUTOINCREMENT, bid FLOAT, timestamp DATETIME)`)
 	if err != nil {
 		log.Fatalf("Error while creating table: %v", err)
 	}
@@ -124,11 +127,10 @@ func initializeDataBase() {
 func persistData(cotacao CotacaoUSDBRL) error {
 
 	const timeOutMillis = 10
-	const dsn = "root:password@tcp(mysql:3306)/desafio-api-client-server"
 	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*timeOutMillis)
 	defer cancel()
 
-	db_ptr, err := sql.Open("mysql", dsn)
+	db_ptr, err := sql.Open("sqlite3", local_db_file)
 	if err != nil {
 		return err
 	}
@@ -140,7 +142,11 @@ func persistData(cotacao CotacaoUSDBRL) error {
 	}
 	defer statement.Close()
 
-	_, err = statement.ExecContext(ctx, cotacao.Usdbrl.Bid, time.Now())
+	local, err := time.LoadLocation("America/Sao_Paulo")
+	if err != nil {
+		return err
+	}
+	_, err = statement.ExecContext(ctx, cotacao.Usdbrl.Bid, time.Now().In(local))
 	if err != nil {
 		return err
 	}
