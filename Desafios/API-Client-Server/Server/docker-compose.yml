@@ -14,7 +14,7 @@ services:
       - 3306:3306
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-ppassword"]
-      timeout: 20s
+      timeout: 5s
       retries: 10
     networks:
       - mynet
