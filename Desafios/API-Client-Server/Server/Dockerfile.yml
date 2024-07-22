@@ -1,4 +1,6 @@
-FROM golang:1.21.10-alpine
+# BuildStage
+
+FROM golang:1.21.10-alpine as BuildStage
 
 WORKDIR /app
 
@@ -7,8 +9,16 @@ COPY go.* .
 
 RUN go mod tidy
 
-RUN go build -o server server.go
+RUN GOOS=linux go build -o app server.go
+
+# Deploy Stage
+
+from alpine:latest
+
+WORKDIR /app
+
+COPY --from=BuildStage /app/app ./
 
 EXPOSE 8080
 
-CMD ["/app/server"]
+ENTRYPOINT ["./app"]
