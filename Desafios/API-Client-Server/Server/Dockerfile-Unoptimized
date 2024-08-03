@@ -1,0 +1,27 @@
+# BuildStage
+
+FROM golang:1.21.10-alpine as BuildStage
+
+WORKDIR /app
+
+COPY *.go .
+COPY go.* .
+
+RUN go mod tidy
+
+# https://www.reddit.com/r/golang/comments/pi97sp/what_is_the_consequence_of_using_cgo_enabled0/
+
+RUN CGO_ENABLED=0 GOOS=linux go build -o server server.go
+
+# https://aprendagolang.com.br/como-fazer-uma-imagem-docker-otimizada-com-multi-stage-build/
+# Deploy Stage
+
+from golang:1.21.10-alpine
+
+WORKDIR /app
+
+COPY --from=BuildStage /app/server ./
+
+EXPOSE 8080
+
+ENTRYPOINT ["./server"]
