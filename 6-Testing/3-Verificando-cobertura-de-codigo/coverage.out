@@ -1,0 +1,6 @@
+mode: set
+github.com/LuizNach/Go-Expert/6-Testing/3-Verificando-cobertura-de-codigo/tax.go:3.43,4.17 1 1
+github.com/LuizNach/Go-Expert/6-Testing/3-Verificando-cobertura-de-codigo/tax.go:4.17,6.3 1 0
+github.com/LuizNach/Go-Expert/6-Testing/3-Verificando-cobertura-de-codigo/tax.go:6.8,6.30 1 1
+github.com/LuizNach/Go-Expert/6-Testing/3-Verificando-cobertura-de-codigo/tax.go:6.30,8.3 1 1
+github.com/LuizNach/Go-Expert/6-Testing/3-Verificando-cobertura-de-codigo/tax.go:8.8,10.3 1 1
