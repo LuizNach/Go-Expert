@@ -25,4 +25,4 @@ Quanto tempo por operação: 0.2156 ns/op
   
 Sempre que olharmos para o resultado do go test seguiremos o formato: [BenchmarkFnName] [NumberOfIterationsInTimeAllowed] [NSPerOperation]  
   
-Para rodarmos 10 iterações de cada benchmark para podermos avaliar medias, flutuações etc podemos utilizar `go test -bench=. -run=# -count=10`
+Para rodarmos 10 iterações de cada benchmark para podermos avaliar medias, flutuações etc podemos utilizar `go test -bench=. -run=^# -count=10`
