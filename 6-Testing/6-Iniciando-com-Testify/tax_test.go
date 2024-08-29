@@ -17,7 +17,7 @@ func TestCalculateTax(t *testing.T) {
 
 	// Reference https://pkg.go.dev/github.com/stretchr/testify@v1.9.0/assert#Error
 	if assert.Error(t, err) {
-		assert.Equal(t, "mount must be greater than 0", err.Error()) // Para verificar a mensagem precisamos criar uma verificação manual
+		assert.Equal(t, err.Error(), "amount must be greater than 0.0") // Para verificar a mensagem precisamos criar uma verificação manual
 	}
 	assert.Contains(t, err.Error(), "greater than 0") // Verificamos que o erro contém uma certa string dentro da mensagem
 	assert.Equal(t, tax, 0.0)                         // Por fim, verificamos que o valor retornado é do tipo float64(diferente se comparassemos somente com 0) com valor correto
