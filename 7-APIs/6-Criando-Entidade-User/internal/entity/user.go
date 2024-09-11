@@ -3,15 +3,16 @@ package entity
 import (
 	"log"
 
+	"github.com/LuizNach/Go-Expert/7-APIs/6-Criando-Entidade-User/pkg/entity"
 	"golang.org/x/crypto/bcrypt"
 )
 
 // VO - Value Object
 type User struct {
-	ID       string `json:"id"`
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"-"` // MARK Não entendi bem essa parte
+	ID       entity.ID `json:"id"`
+	Name     string    `json:"name"`
+	Email    string    `json:"email"`
+	Password string    `json:"-"` // MARK Não entendi bem essa parte
 }
 
 func NewUser(name string, email string, password string) (*User, error) {
@@ -20,7 +21,7 @@ func NewUser(name string, email string, password string) (*User, error) {
 		return nil, err
 	}
 	return &User{
-		ID:       "id",
+		ID:       entity.NewUuid(),
 		Name:     name,
 		Email:    email,
 		Password: string(hash), // Nunca guardamos a senha de forma pura, sempre incriptamos para guardar nodb
