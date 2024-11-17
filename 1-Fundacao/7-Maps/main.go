@@ -27,6 +27,8 @@ func main() {
 	fmt.Printf("[LOG] Após fazer o delete do elemento def: %v\n", meu_dict)
 	fmt.Printf("[LOG] Importante lembrar que após deletar da pra acessar a chave de def: %v\n", meu_dict["def"])
 
+	fmt.Printf("[LOG] Acessando um cara que não foi inserido => meu_dict[\"zse\"]: %v\n", meu_dict["zse"])
+
 	println("--------------------")
 
 	meu_dict["ghi"] = 3
