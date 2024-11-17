@@ -11,7 +11,7 @@ func main() {
 
 	println("-------------------------")
 
-	value1, value2 := soma2(5, 5)
+	value1, value2 := soma_e_maior_que_dez(5, 5)
 
 	fmt.Printf("Retorno da funcao com multiplos retornos:: valor1: %v valor2: %v\n", value1, value2)
 
@@ -29,8 +29,8 @@ func soma(a int, b int) int {
 	return a + b
 }
 
-func soma2(a, b int) (int, bool) {
-	// goalng consegue retorna mais de uma valor em seu retorno
+func soma_e_maior_que_dez(a, b int) (int, bool) {
+	// golang consegue retorna mais de uma valor em seu retorno
 	// na assinatura da funcao devemos colocar o par dos tipos do retorno entre ( )
 	if a+b > 10 {
 		return a + b, true
