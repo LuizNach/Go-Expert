@@ -1,5 +1,7 @@
 package main
 
+// Reference: https://go101.org/article/pointer.html
+
 import (
 	"fmt"
 )
