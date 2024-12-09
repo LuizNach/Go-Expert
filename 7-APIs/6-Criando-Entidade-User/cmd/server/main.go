@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/LuizNach/Go-Expert/7-APIs/4-Finalizando-configuracao/configs"
+	"github.com/LuizNach/Go-Expert/7-APIs/6-Criando-Entidade-User/configs"
 )
 
 func main() {

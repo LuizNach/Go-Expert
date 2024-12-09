@@ -3,7 +3,6 @@ module github.com/LuizNach/Go-Expert/7-APIs/6-Criando-Entidade-User
 go 1.21.10
 
 require (
-	github.com/LuizNach/Go-Expert/7-APIs/4-Finalizando-configuracao v0.0.0-20240902080723-9f319a8b4d31
 	github.com/go-chi/jwtauth v1.2.0
 	github.com/google/uuid v1.4.0
 	github.com/spf13/viper v1.19.0
